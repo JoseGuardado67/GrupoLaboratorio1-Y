@@ -2,7 +2,7 @@
 
 int QuemarCalorias(int *calorias, int *caloriasQuemadas);
 
-int main()
+int main()   
 {
     int calorias = 2000;
     int cant = 0;
