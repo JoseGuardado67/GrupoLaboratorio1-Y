@@ -1,59 +1,66 @@
-    #include <iostream>
+#include <iostream>
 
-int QuemarCalorias(int* calorias, int* caloriasQuemadas);
+int QuemarCalorias(int *calorias, int *caloriasQuemadas);
 
-int main() {
+int main()
+{
     int calorias = 2000;
     int cant = 0;
 
-    std::cout << "Ingrese las calorias a quemar: ";
-    std::cin >> cant;
+    std::cout << "Seleccione una opcion:" << std::endl;
+    std::cout << "1. Consultar Calorias" << std::endl;
+    std::cout << "2. Agregar Calorias" << std::endl;
+    std::cout << "3. Quemar Calorias " << std::endl;
+    std::cout << "4. Salir" << std::endl;
+    std::cout << "Ingrese el número de la opcion deseada: ";
+    if (int opcion; std::cin >> opcion)
+    {
+        switch (opcion)
+        {
+        case 1:
+            std::cout << "Consultar Calorias" << std::endl;
+            break;
+        case 2:
+            std::cout << "Agregar Calorias" << std::endl;
+            break;
+        case 3:
 
-    QuemarCalorias(&calorias, &cant);
-    std::cout << "Calorias quemadas: " << cant << std::endl;
-    std::cout << "Calorias restantes: " << calorias << std::endl;
+            std::cout << "Ingrese las calorias a quemar: ";
+            std::cin >> cant;   
+            if (cant < 0)
+            {
+                std::cout << "Cantidad de calorias a quemar no puede ser negativa." << std::endl;
+                do 
+                {
+                    std::cout << "Ingrese nuevamente las calorias a quemar: ";
+                    std::cin >> cant;
+                } while (cant < 0);
+                std::cout << "Cantidad de calorias a quemar aceptada: " << cant << std::endl;
+                break;
+            }
+
+            QuemarCalorias(&calorias, &cant);
+            std::cout << "Calorias quemadas: " << cant << std::endl;
+            
+            break;
+        case 4:
+            std::cout << "Salir" << std::endl;
+            break;
+        default:
+            std::cout << "Opcion inválida. Por favor, seleccione una opcion valida." << std::endl;
+            break;
+        }
+    }
+    else
+    {
+        std::cout << "Entrada invalida. Por favor, ingrese un numero." << std::endl;
+    }
 
     return 0;
 }
 
-int QuemarCalorias(int* calorias, int* cant) {
+int QuemarCalorias(int *calorias, int *cant)
+{
     *calorias -= *cant;
     return *calorias;
 }
-    
-    
-    int main() {
-
-
-        std::cout << "Seleccione una opcion:" << std::endl;
-        std::cout << "1. Consultar Calorias" << std::endl;
-        std::cout << "2. Agregar Calorias 2" << std::endl;
-        std::cout << "3. Quemar Calorias 3" << std::endl;
-        std::cout << "4. Salir 4" << std::endl;
-        std::cout << "Ingrese el número de la opcion deseada: ";
-        if (int opcion; std::cin >> opcion) {
-            switch (opcion) {
-                case 1:
-                    std::cout << "Consultar Calorias" << std::endl;
-                    break;
-                case 2:
-                    std::cout << "Agregar Calorias" << std::endl;
-                    break;
-                case 3:
-                    std::cout << "Quemar Calorias" << std::endl;
-                    break;
-                case 4:
-                    std::cout << "Salir" << std::endl;
-                    break;
-                default:
-                    std::cout << "Opcion inválida. Por favor, seleccione una opción válida." << std::endl;
-                    break;
-            }
-        } else {
-            std::cout << "Entrada invalida. Por favor, ingrese un numero." << std::endl;
-        }
-
-        
-      
-      return 0;
-    }
