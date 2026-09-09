@@ -1,8 +1,10 @@
 #include <iostream>
 
 int QuemarCalorias(int *calorias, int *caloriasQuemadas);
+int ConsultarCalorias(float calorias);
+int AgregarCalorias(int *calorias, int *cant);
 
-int main()   
+int main()
 {
     int calorias = 2000;
     int cant = 0;
@@ -18,19 +20,36 @@ int main()
         switch (opcion)
         {
         case 1:
-            std::cout << "Consultar Calorias" << std::endl;
+            ConsultarCalorias(calorias);
             break;
         case 2:
-            std::cout << "Agregar Calorias" << std::endl;
+            std::cout << "Ingrese la cantidad de calorias consumidas: ";
+            std::cin >> cant;
+
+            if (cant < 0 || cant == 0)
+            {
+                std::cout << std::endl
+                          << "ERROR INGRESE UNA CANTIDAD MAYOR A 0" << std::endl;
+
+                do
+                {
+                    std::cout << "Ingrese la cantidad de calorias consumidas (mayor a 0): ";
+                    std::cin >> cant;
+                } while (cant < 0 || cant == 0);
+            }
+
+            AgregarCalorias(&calorias, &cant);
+
+            std::cout << "Calorias agregadas con exito." << std::endl;
             break;
         case 3:
 
             std::cout << "Ingrese las calorias a quemar: ";
-            std::cin >> cant;   
+            std::cin >> cant;
             if (cant < 0)
             {
                 std::cout << "Cantidad de calorias a quemar no puede ser negativa." << std::endl;
-                do 
+                do
                 {
                     std::cout << "Ingrese nuevamente las calorias a quemar: ";
                     std::cin >> cant;
@@ -41,7 +60,7 @@ int main()
 
             QuemarCalorias(&calorias, &cant);
             std::cout << "Calorias quemadas: " << cant << std::endl;
-            
+
             break;
         case 4:
             std::cout << "Salir" << std::endl;
@@ -63,4 +82,16 @@ int QuemarCalorias(int *calorias, int *cant)
 {
     *calorias -= *cant;
     return *calorias;
+}
+int AgregarCalorias(int *calorias, int *cant)
+{
+    *calorias += *cant;
+
+    return *calorias;
+}
+
+int ConsultarCalorias(float calorias)
+{
+    std::cout << "Calorias totales: " << calorias;
+    return calorias;
 }
